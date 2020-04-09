@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("Inside onItemClick");
                 PopupMenu popup = new PopupMenu(MainActivity.this,view);
                 popup.getMenuInflater().inflate(R.menu.taskmenu,popup.getMenu());
-                popup.show();
+                popup.show()
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {

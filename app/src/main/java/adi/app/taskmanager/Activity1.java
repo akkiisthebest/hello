@@ -50,7 +50,7 @@ public class Activity1 extends Activity {
                 if (hi2 < 0) {
                     Snackbar.make(v,"Please enter a time after the current date",Snackbar.LENGTH_SHORT).setAction("Action", null).show();
                 } else {
-                    //ret.putExtra(Intent.EXTRA_INDEX, hi2);
+                    ret.putExtra(Intent.EXTRA_INDEX, hi2);
                     ret.putExtra(Intent.EXTRA_TEXT, text2.getText().toString());
                     ret.putExtra(Intent.EXTRA_CC, datestr);
                     setResult(RESULT_OK, ret);

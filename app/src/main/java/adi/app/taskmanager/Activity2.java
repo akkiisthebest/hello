@@ -23,7 +23,6 @@ public class Activity2 extends Activity {
         setContentView(R.layout.onclick);
         final Intent intent = getIntent();
         String [] hi4 = intent.getStringExtra(Intent.EXTRA_TEXT).split("\n");
-
         final Button save = findViewById(R.id.save);
         final EditText hi2 = findViewById(R.id.editText4);
         String strttext = hi4[0];

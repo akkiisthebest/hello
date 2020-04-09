@@ -9,12 +9,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.util.LinkedList;
@@ -49,12 +51,27 @@ public class MainActivity extends AppCompatActivity {
         list.setClickable(true);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String helloo = parent.getItemAtPosition(position).toString();
-                Intent intent = new Intent(view.getContext(),Activity2.class);
-                intent.putExtra(Intent.EXTRA_TEXT,helloo);
-                startActivityForResult(intent,1);
-                System.out.println(1);
+            public void onItemClick(final AdapterView<?> parent,final View view,final int position,final long id) {
+                System.out.println("Inside onItemClick");
+                PopupMenu popup = new PopupMenu(MainActivity.this,view);
+                popup.getMenuInflater().inflate(R.menu.taskmenu,popup.getMenu());
+                popup.show();
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (((String)item.getTitle()).equals("Edit")) {
+                            String helloo = parent.getItemAtPosition(position).toString();
+                            Intent intent = new Intent(view.getContext(),Activity2.class);
+                            intent.putExtra(Intent.EXTRA_TEXT,helloo);
+                            startActivityForResult(intent,1);
+                            System.out.println(1);
+                        } else if (((String)item.getTitle()).equals("Delete")) {
+                            String helloo = parent.getItemAtPosition(position).toString();
+                            hello.remove(helloo);
+                        }
+                        return false;
+                    }
+                });
 
             }
         });

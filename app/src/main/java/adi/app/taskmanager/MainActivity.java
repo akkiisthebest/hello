@@ -2,13 +2,6 @@ package adi.app.taskmanager;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import adi.app.taskmanager.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +11,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.LinkedList;
 
@@ -55,17 +53,17 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("Inside onItemClick");
                 PopupMenu popup = new PopupMenu(MainActivity.this,view);
                 popup.getMenuInflater().inflate(R.menu.taskmenu,popup.getMenu());
-                popup.show();
+                popup.show()
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        if (((String)item.getTitle()).equals("Edit")) {
+                        if (item.getTitle().equals("Edit")) {
                             String helloo = parent.getItemAtPosition(position).toString();
                             Intent intent = new Intent(view.getContext(),Activity2.class);
                             intent.putExtra(Intent.EXTRA_TEXT,helloo);
                             startActivityForResult(intent,1);
                             System.out.println(1);
-                        } else if (((String)item.getTitle()).equals("Delete")) {
+                        } else if (item.getTitle().equals("Delete")) {
                             String helloo = parent.getItemAtPosition(position).toString();
                             hello.remove(helloo);
                         }
@@ -112,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                     DataToFile hi = new DataToFile();
                     hello.remove(data.getStringExtra(Intent.EXTRA_INDEX));
                     hello.notifyDataSetChanged();
-                    String [] hi9 = data.getStringExtra(Intent.EXTRA_TEXT).toString().split("\n");
+                    String[] hi9 = data.getStringExtra(Intent.EXTRA_TEXT).split("\n");
                     String [] hi10 = hi9[2].split(" ");
                     ll.add(hi.index(ll,hi10[1]),data.getStringExtra(Intent.EXTRA_TEXT));
                     hello.notifyDataSetChanged();
